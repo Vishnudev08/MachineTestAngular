@@ -1,0 +1,158 @@
+<div class="panel panel-primary">
+    <div class="panel-heading ">
+        <h2>Edit Vendor</h2>
+       
+    </div>
+    <div class="panel-body">
+<hr/>
+
+<div [hidden]="submitted" style="width: 400px;">
+      <form [formGroup]="editvendorForm" novalidate (ngSubmit)="onSubmit()">
+            <link rel="stylesheet" href="assets/forms.css">
+            <hr/>
+           <h2>Vendor details</h2> 
+           <hr/>
+            <!-- VENDOR NAME-->
+        <div class="form-group">
+          <label class="col-md-4">Vendor Name</label>
+          <input type="text" class="form-control" required  [(ngModel)]="vendor.vnName"
+            formControlName="vnName" 
+            #vnName />
+        </div>
+        <div *ngIf="editvendorForm.controls['vnName'].invalid && (editvendorForm.controls['vnName'].dirty || editvendorForm.controls['vnName'].touched)" class="alert alert-danger">
+          <div *ngIf="editvendorForm.controls['vnName'].errors.required">
+            Vendor Name is required.
+          </div>
+        </div>
+
+        <!-- VENDOR ADDRESS-->
+            <div class="form-group">
+              <label class="col-md-4">Address</label>
+              <input type="text" class="form-control" required [(ngModel)]="vendor.vnAddress"
+              formControlName="vnAddress" 
+              #vnAddress>
+            </div>
+            <div *ngIf="editvendorForm.controls['vnAddress'].invalid && (editvendorForm.controls['vnAddress'].dirty || editvendorForm.controls['vnAddress'].touched)" class="alert alert-danger">
+              <div *ngIf="editvendorForm.controls['vnAddress'].errors.required">
+                Vendor Address is required.
+              </div>
+            </div>
+
+            
+           <!-- VENDOR LOCATION-->
+           <div class="form-group">
+              <label class="col-md-4">Location </label>
+              <select   formControlName="vnLocation" class="form-control" required [(ngModel)]="vendor.vnLocation">
+                <option value="" disabled>Choose Location</option>
+                <option  value="Trivandrum">Trivandrum</option>
+                <option  value="Chennai">Chennai</option>
+                <option  value="Banglore">Banglore</option>
+            </select>
+             
+            </div>
+            <div *ngIf="editvendorForm.controls['vnLocation'].invalid && (editvendorForm.controls['vnLocation'].dirty || editvendorForm.controls['vnLocation'].touched)" class="alert alert-danger">
+              <div *ngIf="editvendorForm.controls['vnLocation'].errors.required">
+               Location is required.
+              </div>
+            </div>
+
+
+           <!-- VENDOR SERVICE-->
+        <div class="form-group">
+            <label class="col-md-4">Service</label>
+            <input type="text" class="form-control" required [(ngModel)]="vendor.vnService"
+            formControlName="vnService" 
+            #vnService>
+          </div>
+          <div *ngIf="editvendorForm.controls['vnService'].invalid && (editvendorForm.controls['vnService'].dirty || editvendorForm.controls['vnService'].touched)" class="alert alert-danger">
+            <div *ngIf="editvendorForm.controls['vnService'].errors.required">
+              Vendor Service is required.
+            </div>
+          </div>
+
+            <!-- VENDOR PINCODE-->
+        <div class="form-group">
+            <label class="col-md-4">Pincode</label>
+            <input type="text" class="form-control" required [(ngModel)]="vendor.vnPincode"
+            formControlName="vnPincode" 
+            #vnPincode>
+          </div>
+          <div *ngIf="editvendorForm.controls['vnPincode'].invalid && (editvendorForm.controls['vnPincode'].dirty || editvendorForm.controls['vnPincode'].touched)" class="alert alert-danger">
+            <div *ngIf="editvendorForm.controls['vnPincode'].errors.required">
+              Vendor Pincode is required.
+            </div>
+          </div>
+          <hr/>
+
+          <h2>Contact details</h2>
+          <hr/>
+
+           <!--Contact Person Name-->
+        <div class="form-group">
+            <label class="col-md-4">Contact Person Name</label>
+            <input type="text" class="form-control" required [(ngModel)]="vendor.name"
+            formControlName="name" 
+            #name>
+          </div>
+          <div *ngIf="editvendorForm.controls['name'].invalid && (editvendorForm.controls['name'].dirty || editvendorForm.controls['name'].touched)" class="alert alert-danger">
+            <div *ngIf="editvendorForm.controls['name'].errors.required">
+              Name is required.
+            </div>
+          </div>
+
+            <!--Department-->
+        <div class="form-group">
+            <label class="col-md-4">Department</label>
+            <input type="text" class="form-control" required [(ngModel)]="vendor.department"
+            formControlName="department" 
+            #department>
+          </div>
+          <div *ngIf="editvendorForm.controls['department'].invalid && (editvendorForm.controls['department'].dirty || editvendorForm.controls['department'].touched)" class="alert alert-danger">
+            <div *ngIf="editvendorForm.controls['department'].errors.required">
+                Department is required.
+            </div>
+          </div>
+
+             <!--Email-->
+        <div class="form-group">
+            <label class="col-md-4">Email</label>
+            <input type="email" class="form-control" required [(ngModel)]="vendor.email"
+            formControlName="email" 
+            #email>
+          </div>
+          <div *ngIf="editvendorForm.controls['email'].invalid && (editvendorForm.controls['email'].dirty || editvendorForm.controls['email'].touched)" class="alert alert-danger">
+            <div *ngIf="editvendorForm.controls['email'].errors.required">
+                Email is required.
+            </div>
+          </div>
+
+           <!--Phone number-->
+        <div class="form-group">
+            <label class="col-md-4">Phone</label>
+            <input type="text" class="form-control" required [(ngModel)]="vendor.phone"
+            formControlName="phone" 
+            #phone>
+          </div>
+          <div *ngIf="editvendorForm.controls['phone'].invalid && (editvendorForm.controls['phone'].dirty || editvendorForm.controls['phone'].touched)" class="alert alert-danger">
+            <div *ngIf="editvendorForm.controls['phone'].errors.required">
+                Phone is required.
+            </div>
+          </div>
+        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary"
+            [disabled]="editvendorForm.pristine || editvendorForm.invalid" >
+              Update Vendor
+            </button>
+            &nbsp;
+            <button (click)="list()" class ="btn btn-primary">Back</button>
+        </div>
+      </form>
+    </div>
+   
+
+    <div [hidden] ="!submitted">
+    <h4>You submitted successfully!</h4>
+    </div>
+    </div>
+    </div>

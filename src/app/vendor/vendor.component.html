@@ -1,0 +1,64 @@
+
+    <div class="panel panel-primary">
+           
+        
+        <div class="panel-heading ">
+                <h2>Vendor List</h2><a [routerLink]="['addvendor']" class="btn btn-info" >Create Vendor</a> 
+                <button type="button" class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                [popoverMessage]="popoverMessageLogout" placement="left" (confirm)="confirmClicked = true"
+                (cancel)="cancelClicked=true" confirmButtonType="danger" cancelButtonType="info"
+                (click)="confirmClicked=false; cancelClicked=false " [appendToBody]="true"
+                (confirm)="logout()"  style="margin-left:800px">Logout</button>
+        </div>
+        <div>
+            <form class="form-inline md-form mr-auto mb-4">
+                <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+
+                <input class="form-control my-0 py-1" type="text" placeholder="Search by name/phone/service..." 
+                 [{ngModel}]="searchString" (ngModelChange)="searchByString(searchString)" aria-label="Search">
+                <button  (click)="searchByString(searchString)" mdbBtn size="sm" gradient="aqua" rounded="true"
+                 class="my-0 waves-light" mdbWavesEffect>Search</button>
+            </form>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Vendor Id</th>
+                        <th>Vendor Name</th>
+                        <th>Service</th>
+                        <th>Address</th>
+                        <th>Location</th>
+                        <th>Contact Person</th>
+                        <th>Phone Number</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vendor of vendors | async | paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
+                                                        
+                        <td>{{vendor.vnId}}</td>
+                        <td>{{vendor.vnName}}</td>
+                        <td>{{vendor.vnService}}</td>
+                        <td>{{vendor.vnAddress}}</td>
+                        <td>{{vendor.vnLocation}}</td> 
+                        <td>{{vendor.name}}</td>
+                        <td>{{vendor.phone}}</td>
+                        <td>
+                            <button (click)="updateVendor(vendor.vnId)" class="btn btn-info" style="margin-left: 10px">Edit</button>
+                            <button type="button" class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                            [popoverMessage]="popoverMessage" placement="left" (confirm)="confirmClicked = true"
+                            (cancel)="cancelClicked=true" confirmButtonType="danger" cancelButtonType="info"
+                            (click)="confirmClicked=false; cancelClicked=false " [appendToBody]="true"
+                            (confirm)="deleteVendor(vendor.vnId)" style="margin-left: 10px">Delete</button>
+                            
+                        
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div align="center">
+            <pagination-controls (pageChange)="p = $event" style="align-content: center ; background-color:  #4a148c!important"></pagination-controls>
+          </div>
+    </div>
